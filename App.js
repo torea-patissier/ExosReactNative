@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     alignItems:'stretch',
-    // justifyContent:'flex-end',
+    // justifyContent:'space-around',
     
   },
 
@@ -52,5 +52,6 @@ const styles = StyleSheet.create({
     alignItems:'center',
     margin:10,
     padding:10,
+    flexGrow:1, // Permet à l'élément enfant de s'étirer sur l'écran
   }
 });
