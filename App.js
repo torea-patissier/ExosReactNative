@@ -1,11 +1,12 @@
 // Exercice 1
 import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text,FlatList } from "react-native";
+import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default function App() {
 
   const obj = [
-    {id: "1", name: "Stan", age: 45},
+    {id: "1", name: "Stanz", age: 45},
     {id: "2", name: "Francine", age: 45},
     {id: "3", name: "hayley", age: 18},
     {id: "4", name: "Steve", age: 14},
@@ -15,25 +16,25 @@ export default function App() {
 
   const [family, setFamily] = useState(obj);
 
+  const result = ({item}) =>(
+
+    <View style={styles.list}>
+      <Text style={styles.textList}>{item.name}</Text>
+    </View>
+  )
+
 
   return (
     <View
     style={styles.container}
     >
-      {
-        family.map((member) => {
-          //member représente chaque objet de la const obj ({id: "1", name: "Stan", age: 45})
-          return(
-            <View
-            style={styles.list}
-            key={member.id}
-            >
-              <Text
-              >{member.name} | {member.age} ans</Text>
-            </View>
-          )
-        })
-      }
+
+      <FlatList
+      data={obj}
+      renderItem={result}
+      keyExtractor={ item => item.id}
+      />
+      
     </View>
   );
 }
@@ -43,15 +44,17 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems:'stretch',
     // justifyContent:'space-around',
-    
   },
-
+  
   list: {
     backgroundColor:'deepskyblue',
     justifyContent:'center',
     alignItems:'center',
     margin:10,
     padding:10,
-    flexGrow:1, // Permet à l'élément enfant de s'étirer sur l'écran
-  }
+    // flexGrow:1, // Permet à l'élément enfant de s'étirer sur l'écran
+  },
+  textList: {
+    fontSize:40,
+  },
 });
