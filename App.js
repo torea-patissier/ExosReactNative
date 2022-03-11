@@ -6,20 +6,21 @@ import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAt
 export default function App() {
 
   const obj = [
-    {id: "1", name: "Stanz", age: 45},
-    {id: "2", name: "Francine", age: 45},
-    {id: "3", name: "hayley", age: 18},
-    {id: "4", name: "Steve", age: 14},
-    {id: "5", name: "Roger", age: 1020},
-    {id: "6", name: "Klaus", age: 30},
+    {name: "Stanz", age: 45},
+    {name: "Francine", age: 45},
+    {name: "hayley", age: 18},
+    {name: "Steve", age: 14},
+    {name: "Roger", age: 120},
+    {name: "Klaus", age: 30},
   ]
 
   const [family, setFamily] = useState(obj);
 
   const result = ({item}) =>(
-
     <View style={styles.list}>
-      <Text style={styles.textList}>{item.name}</Text>
+
+      <Text style={styles.textList}>{item.name} | {item.age}</Text>
+
     </View>
   )
 
@@ -32,9 +33,13 @@ export default function App() {
       <FlatList
       data={obj}
       renderItem={result}
-      keyExtractor={ item => item.id}
+      keyExtractor={ (item,index) => index.toString()}
+      /**
+       * Si je n'ai pas d'id alors je me base sur l'index du tableau obj [0] = Stanz,
+       * [1] = Francine etc..
+       */
       />
-      
+
     </View>
   );
 }
@@ -43,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     alignItems:'stretch',
-    // justifyContent:'space-around',
+    // justifyContent:'center',
   },
   
   list: {
