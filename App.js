@@ -1,6 +1,6 @@
 // Exercice 1
 import React, { useState } from "react";
-import { View, StyleSheet, Text,FlatList } from "react-native";
+import { View, StyleSheet, Text,FlatList, RefreshControl } from "react-native";
 import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default function App() {
@@ -34,6 +34,13 @@ export default function App() {
       data={obj}
       renderItem={result}
       keyExtractor={ (item,index) => index.toString()}
+      horizontal={true}
+      refreshControl={
+        <RefreshControl
+        refreshing={true}
+        // onRefresh={onRefresh}
+        />
+      }
       /**
        * Si je n'ai pas d'id alors je me base sur l'index du tableau obj [0] = Stanz,
        * [1] = Francine etc..
